@@ -2,8 +2,12 @@ package com.example.earthquqke;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,6 +29,20 @@ public class MainActivity extends AppCompatActivity {
         mlistview.setAdapter(adapter);
         EarthquakeAsyncTask task = new EarthquakeAsyncTask();
         task.execute(USGS_REQUEST_URL);
+
+        // OnItem Click Listner for List View
+        mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Eathquakehelperclass eathquakehelperclass=adapter.getItem(position);
+
+                Uri uri=Uri.parse(eathquakehelperclass.getUrl());
+                Intent webintent=new Intent(Intent.ACTION_VIEW,uri);
+                if (webintent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(webintent);
+                }
+            }
+        });
     }
     private class EarthquakeAsyncTask extends AsyncTask<String,Void,ArrayList<Eathquakehelperclass>>{
 
@@ -46,4 +64,5 @@ public class MainActivity extends AppCompatActivity {
             adapter.addAll(data);
         }
     }
+
 }

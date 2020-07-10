@@ -48,7 +48,8 @@ public class QueryUtils {
                double mag=properties.getDouble("mag");
                String location=properties.getString("place");
                long time=properties.getLong("time");
-               Eathquakehelperclass  eathquakehelperclass=new Eathquakehelperclass(mag,location,time);
+               String url=properties.getString("url");
+               Eathquakehelperclass  eathquakehelperclass=new Eathquakehelperclass(mag,location,time,url);
                 earthquakes.add(eathquakehelperclass);
             }
         }
@@ -90,7 +91,8 @@ public class QueryUtils {
                 double mag=properties.getDouble("mag");
                 String location=properties.getString("place");
                 long time=properties.getLong("time");
-                Eathquakehelperclass  eathquakehelperclass=new Eathquakehelperclass(mag,location,time);
+                String url=properties.getString("url");
+                Eathquakehelperclass  eathquakehelperclass=new Eathquakehelperclass(mag,location,time,url);
                 earthquakes.add(eathquakehelperclass);
             }
         }
